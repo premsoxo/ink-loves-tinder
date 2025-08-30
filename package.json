@@ -1,0 +1,31 @@
+{
+  "name": "ink-loves-tinder",
+  "version": "1.0.0",
+  "description": "A modern dating application like Tinder",
+  "main": "server/index.js",
+  "scripts": {
+    "dev": "concurrently \"npm run server\" \"npm run client\"",
+    "server": "nodemon server/index.js",
+    "client": "cd client && npm start",
+    "build": "cd client && npm run build",
+    "install-all": "npm install && cd client && npm install"
+  },
+  "dependencies": {
+    "express": "^4.18.2",
+    "cors": "^2.8.5",
+    "bcryptjs": "^2.4.3",
+    "jsonwebtoken": "^9.0.2",
+    "multer": "^1.4.5-lts.1",
+    "cloudinary": "^1.41.0",
+    "dotenv": "^16.3.1",
+    "mongoose": "^7.5.0",
+    "socket.io": "^4.7.2"
+  },
+  "devDependencies": {
+    "nodemon": "^3.0.1",
+    "concurrently": "^8.2.0"
+  },
+  "keywords": ["dating", "tinder", "react", "nodejs"],
+  "author": "Your Name",
+  "license": "MIT"
+}

@@ -6,10 +6,10 @@ import toast from 'react-hot-toast';
 
 const MatchContext = createContext();
 
-export const useMatch = () => {
+export const useMatches = () => {
   const context = useContext(MatchContext);
   if (!context) {
-    throw new Error('useMatch must be used within a MatchProvider');
+    throw new Error('useMatches must be used within a MatchProvider');
   }
   return context;
 };

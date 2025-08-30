@@ -87,3 +87,7 @@ tests/
 # Temporary files
 tmp/
 temp/
+
+# Keep package files for Docker build
+!package*.json
+!client/package*.json

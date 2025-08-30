@@ -48,20 +48,21 @@ services:
       start_period: 40s
 
   # Nginx Reverse Proxy (Optional)
-  nginx:
-    image: nginx:alpine
-    container_name: dating-app-nginx
-    restart: unless-stopped
-    ports:
-      - "80:80"
-      - "443:443"
-    volumes:
-      - ./nginx.conf:/etc/nginx/nginx.conf:ro
-      - ./ssl:/etc/nginx/ssl:ro
-    depends_on:
-      - dating-app
-    networks:
-      - dating-app-network
+  # Uncomment when you have nginx.conf and SSL certificates
+  # nginx:
+  #   image: nginx:alpine
+  #   container_name: dating-app-nginx
+  #   restart: unless-stopped
+  #   ports:
+  #     - "80:80"
+  #     - "443:443"
+  #   volumes:
+  #     - ./nginx.conf:/etc/nginx/nginx.conf:ro
+  #     - ./ssl:/etc/nginx/ssl:ro
+  #   depends_on:
+  #     - dating-app
+  #   networks:
+  #     - dating-app-network
 
 volumes:
   mongodb_data:

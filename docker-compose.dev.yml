@@ -1,0 +1,41 @@
+version: '3.8'
+
+services:
+  # Development override for MongoDB
+  mongodb:
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: admin
+      MONGO_INITDB_ROOT_PASSWORD: password123
+      MONGO_INITDB_DATABASE: dating-app
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongodb_data:/data/db
+      - ./mongo-init.js:/docker-entrypoint-initdb.d/mongo-init.js:ro
+
+  # Development override for dating app
+  dating-app:
+    build:
+      context: .
+      dockerfile: Dockerfile.dev
+    environment:
+      - NODE_ENV=development
+      - MONGODB_URI=mongodb://admin:password123@mongodb:27017/dating-app?authSource=admin
+      - JWT_SECRET=dev-secret-key
+      - PORT=5000
+      - CORS_ORIGIN=http://localhost:3000
+    ports:
+      - "5000:5000"
+      - "3000:3000"
+    volumes:
+      - .:/app
+      - /app/node_modules
+      - /app/client/node_modules
+    command: npm run dev
+    stdin_open: true
+    tty: true
+
+  # Remove nginx in development
+  nginx:
+    profiles:
+      - production
